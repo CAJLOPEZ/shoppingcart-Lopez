@@ -1,22 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import NavBar from './components/NavBar/NavBar';
+import ItemListContainer from './components/Container/ItemListContainer';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello World.
-        </p>
-        <a
-          className="App-link"
-          href="https://github.com/CAJLOPEZ"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Welcome to my Github
-        </a>
+        <NavBar/>
+        <ItemListContainer greeting='BIENVENIDOS'/>
       </header>
     </div>
   );
