@@ -1,9 +1,10 @@
 import React from 'react';
+import cart from '../../assets/img/cart.png'
 
 const CartWidget = () =>{
     return(
         <div>
-            <p>Carrito</p>
+            <img src={cart} className="cartWidget"></img>
         </div>
     )
 }
