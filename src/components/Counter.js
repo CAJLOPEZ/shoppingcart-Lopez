@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {CartContext} from "../components/CartContext";
+import Cart from "./Cart";
 
 const Counter = () => {
   const [count, setCount] = useState(0);
@@ -38,6 +40,7 @@ const Counter = () => {
       </div>
     );
   };
+
   return (
     <>
       <div
