@@ -1,9 +1,9 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import { NavBar } from "./components/NavBar";
 import Cart from "./components/Cart";
-import {Carrito} from "./components/CartContext";
+import {CartProvider} from "./components/CartContext";
 import Home from "./components/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "jquery/dist/jquery.min.js";
@@ -14,8 +14,10 @@ export default function App() {
   const category = ["category1", "category2"];
   return (
     <>
-      <NavBar categories={category} />
-      <Switch>
+      <CartProvider>
+        <BrowserRouter>
+          <NavBar categories={category} />
+        <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/cart">
         <Cart/>
@@ -23,11 +25,13 @@ export default function App() {
         {/* <Route path="/cart" exact component={Cart} /> */}
         {/* <Route path="/item/:title" exact component={ItemDetailContainer} /> */}
         <Route path="/item/:title">
-        <Carrito>
+        <Cart>
         <ItemDetailContainer/>
-        </Carrito>
+        </Cart>
         </Route>
-      </Switch>
+        </Switch>
+      </BrowserRouter>
+      </CartProvider>
     </>
   );
 }

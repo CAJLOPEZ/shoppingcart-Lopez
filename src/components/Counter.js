@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import {CartContext} from "../components/CartContext";
-import Cart from "./Cart";
+import { CartContext } from "./CartContext";
 
 const Counter = () => {
   const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
+  const [cartProducts, setCartProducts] = useContext(CartContext);
+  console.log('cartProducts', cartProducts)
 
   const add = () => {
     setCount(count + 1);
+    // setCartProducts(count + 1);
+
   };
 
   const sub = () => {
     setCount(count - 1);
+    // setCartProducts(count - 1);
   };
 
   function handleShow() {
     setShow(!show);
+    setCartProducts(count)
   }
 
   const text = count === 1 ? "producto" : "productos";
