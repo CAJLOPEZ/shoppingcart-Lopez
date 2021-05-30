@@ -1,37 +1,36 @@
 import React from "react";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { useState } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import NavBar from "./Components/Navbar/NavBar";
+import HomeContainer from "./Containers/HomeContainer";
+import CartContainer from "./Containers/CartContainer";
+import ItemDetailContainer from "./Containers/ItemDetailContainer";
+import CartContext from "./Context/CartContext";
+import CategoryContainer from "./Containers/CategoryContainer";
+import CheckOutContainer from "./Containers/CheckOutContainer/CheckOutContainer";
+import Greeting from "./Components/Greeting/greeting";
+import CatContainer from "./Containers/CatContainer";
 import "./App.css";
-import { NavBar } from "./components/NavBar";
-import Cart from "./components/Cart";
-import {CartProvider} from "./components/CartContext";
-// import Home from "./components/Home";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "jquery/dist/jquery.min.js";
-import ItemDetailContainer from "./components/ItemDetailContainer";
 
-
-export default function App() {
-  const category = ["category1", "category2"];
+function App() {
   return (
-    <>
-      <CartProvider>
+    <div className="App">
+      <CartContext>
         <BrowserRouter>
-          <NavBar categories={category} />
-        <Switch>
-        <Route path="/" exact component={ItemDetailContainer} />
-        <Route path="/cart">
-        <Cart/>
-        </Route>
-        {/* <Route path="/cart" exact component={Cart} /> */}
-        {/* <Route path="/item/:title" exact component={ItemDetailContainer} /> */}
-        <Route path="/item/:title">
-        <Cart>
-        <ItemDetailContainer/>
-        </Cart>
-        </Route>
-        </Switch>
-      </BrowserRouter>
-      </CartProvider>
-    </>
+          <NavBar />
+          <Switch>
+            <Route path="/gracias/" render={() => <Greeting />} />
+            <Route path="/checkout/" render={() => <CheckOutContainer />} />
+            <Route path="/item/:id" component={ItemDetailContainer} />
+            <Route exact path="/categories/:id" component={CatContainer} />
+            <Route path="/categories/" component={CategoryContainer} />
+            <Route path="/cart/" render={() => <CartContainer />} />
+            <Route path="/" render={() => <HomeContainer />} />
+          </Switch>
+        </BrowserRouter>
+      </CartContext>
+    </div>
   );
 }
+
+export default App;
