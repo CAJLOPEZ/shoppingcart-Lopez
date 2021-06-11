@@ -1,6 +1,6 @@
 Pagina ecommerce de venta de sillas de oficina y gamer con uso de react y firebase.
 
-![](demo/demo.gif)
+![](Demo/Demo.gif)
 
 # Getting Started with Create React App
 
