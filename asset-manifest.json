@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/shoppingcart-Lopez/static/css/main.7f044531.chunk.css",
+    "main.js": "/shoppingcart-Lopez/static/js/main.ae733104.chunk.js",
+    "main.js.map": "/shoppingcart-Lopez/static/js/main.ae733104.chunk.js.map",
+    "runtime-main.js": "/shoppingcart-Lopez/static/js/runtime-main.e0dcc08f.js",
+    "runtime-main.js.map": "/shoppingcart-Lopez/static/js/runtime-main.e0dcc08f.js.map",
+    "static/js/2.2177e766.chunk.js": "/shoppingcart-Lopez/static/js/2.2177e766.chunk.js",
+    "static/js/2.2177e766.chunk.js.map": "/shoppingcart-Lopez/static/js/2.2177e766.chunk.js.map",
+    "index.html": "/shoppingcart-Lopez/index.html",
+    "static/css/main.7f044531.chunk.css.map": "/shoppingcart-Lopez/static/css/main.7f044531.chunk.css.map",
+    "static/js/2.2177e766.chunk.js.LICENSE.txt": "/shoppingcart-Lopez/static/js/2.2177e766.chunk.js.LICENSE.txt",
+    "static/media/cart.3d71ab1b.svg": "/shoppingcart-Lopez/static/media/cart.3d71ab1b.svg",
+    "static/media/logo.fc9ac513.png": "/shoppingcart-Lopez/static/media/logo.fc9ac513.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e0dcc08f.js",
+    "static/js/2.2177e766.chunk.js",
+    "static/css/main.7f044531.chunk.css",
+    "static/js/main.ae733104.chunk.js"
+  ]
+}
