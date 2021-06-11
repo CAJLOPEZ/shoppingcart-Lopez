@@ -5,15 +5,17 @@ import { Context } from '../../Context/CartContext';
 
 
 export default function Cart({ total }) {
-    const [cartItems,setCartItems] = useContext(Context);
+    const [items, setItems] = useContext(Context);
+
 
   return (
     <div className="cartPageStyle">
-      {cartItems && cartItems.length ? (
+      {items && items.length ? (
+        
         <div>
           <h2 className="title-item-detail"> Detalle </h2>
           <div>
-            {cartItems.map((item) => (
+            {items.map((item) => (
               <div>
                 <div>
                   <span>Item :</span> {item.name}
@@ -45,7 +47,7 @@ export default function Cart({ total }) {
               <button className="btn-detail-card links-card"> Comprar</button>
             </Link>
             <Link to={"/"}>
-              <button className="btn-detail-card" onClick={() => setCartItems([])}> Vaciar carrito</button>
+              <button className="btn-detail-card" onClick={() => setItems([])}> Vaciar carrito</button>
             </Link>
           </div>
         </div>
@@ -53,7 +55,7 @@ export default function Cart({ total }) {
         <div className="noItems">
           <h2 className="textNoItems">Carrito vacio</h2>
           <Link to={"/"} className="links-bottom">
-            <button className="btn-detail"> ir a Home</button>
+            <button className="btn-detail">ir a Home</button>
           </Link>
         </div>
       )}

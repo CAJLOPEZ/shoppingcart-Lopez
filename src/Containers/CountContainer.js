@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Count from "../Components/Count/Count";
+import Count from "../components/Count/Count";
 
 export default function CountContainer({ min, max, setContador, contador }) {
   const onAdd = (sign) => {

@@ -2,14 +2,14 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "../Context/CartContext";
 import { getFirestore } from "../firebase";
-import ItemDetail from "../Components/itemDetail/ItemDetail";
+import ItemDetail from "../components/itemDetail/ItemDetail";
 
 const ItemDetailContainer = () => {
   const { id } = useParams();
   const [item, setItem] = useState();
   const [loading, setLoading] = useState(true);
   const [contador, setContador] = useState(0);
-  const [cartItems, setCartItems] = useContext(Context);
+  const [items, setItems] = useContext(Context);
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
@@ -37,8 +37,8 @@ const ItemDetailContainer = () => {
 
   const buyHandle = () => {
     let alreadyInCart = false;
-    cartItems &&
-      cartItems.map((itemIn) => {
+    items &&
+      items.map((itemIn) => {
         if (itemIn.id === item.id) {
           alreadyInCart = true;
         }
@@ -48,7 +48,7 @@ const ItemDetailContainer = () => {
         qty: contador,
         ...item,
       };
-      setCartItems((currentCart) => [...currentCart, itemCompra]);
+      setItems((currentCart) => [...currentCart, itemCompra]);
     } else {
       setModal(true);
     }

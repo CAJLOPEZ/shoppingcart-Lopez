@@ -2,51 +2,50 @@ import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../Context/CartContext";
 import firebase from "firebase/app";
 import { getFirestore } from "../../firebase";
-import { Link } from "react-router-dom";
 import "./input.css";
 
 export default function CheckOutContainer() {
-  const [cartItems] = useContext(Context);
+  const [items] = useContext(Context);
   const [orderId, setOrderId] = useState("");
-  const [loading, setLoading] = useState([]);
   const [name, setName] = useState("");
   const [total, setTotal] = useState(0);
   const [email, setEmail] = useState("");
   const [conEmail, setConEmail] = useState("");
+  const [order, setOrder] = useState({});
+
+  const db = getFirestore();
+  const orders = db.collection("orders");
 
   useEffect(() => {
-    cartItems &&
-      cartItems.map((item) =>
+    items &&
+      items.map((item) =>
         setTotal((prevTotal) => prevTotal + item.price * item.qty)
       );
-  }, [cartItems]);
+  }, [items]);
+
+  useEffect(() => {
+    if (order.items) {
+      console.log("in");
+      console.log("order.items", order.items);
+      orders
+        .add(order)
+        .then((res) => setOrderId(res.id))
+        .catch((err) => console.log("err", err));
+    }
+  }, [order]);
 
   const addOrder = () => {
-    const db = getFirestore();
-    const orders = db.collection("orders");
-
     const buyer = { name, email, conEmail };
-    const items = cartItems;
 
-    const newOrder = {
+    let order = {
       buyer,
       items,
       date: firebase.firestore.Timestamp.fromDate(new Date()),
       total: total,
     };
-
-    orders
-      .add(newOrder)
-      .then(({ id }) => {
-        setOrderId(id);
-      })
-      .catch((error) => {
-        // setError(error);
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    console.log("items", items);
+    console.log("items.length", items.length);
+    items.length && setOrder(order);
   };
 
   const onNameChange = (evento) => {
@@ -58,10 +57,11 @@ export default function CheckOutContainer() {
   const confonEmailChange = (evento) => {
     setConEmail(evento.target.value);
   };
+
   return (
-    <div>
-      <h2>Dejanos tus datos y confirma tu compra</h2>
-      <form className="form margin-bottom-300px">
+    <div className="orderForm">
+      <div>
+        <h2>Dejanos tus datos y confirma tu compra</h2>
         <div className="form-group d-flex">
           <label className="text-start">nombre</label>
           <input
@@ -92,12 +92,17 @@ export default function CheckOutContainer() {
             placeholder="mail@ejemplo.com"
           />
         </div>
-        <Link to={"/gracias/"}>
-          <button onClick={addOrder} className="btn-detail-out">
-            comprar
-          </button>
-        </Link>
-      </form>
+      </div>
+      <div></div>
+      <button onClick={addOrder} className="btn-detail-out">
+        comprar
+      </button>
+      {orderId && (
+        <h2>
+          El codigo de tu orden es: {orderId} <hr /> Gracias por tu compra! Te
+          enviaremos un e-mail con el detalle de tu orden!
+        </h2>
+      )}
     </div>
   );
 }

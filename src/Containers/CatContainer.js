@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getFirestore } from "../firebase";
-import Category from "../Components/Category/Category";
+import Category from "../components/Category/Category";
 
 const CatContainer = () => {
   const { id } = useParams();

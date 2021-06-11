@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getFirestore } from "../firebase";
-import Categories from "../Components/Categories/Categories";
+import Categories from "../components/Categories/Categories";
 
 const CategoryContainer = () => {
   const [categorias, setCategorias] = useState([]);
